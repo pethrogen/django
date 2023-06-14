@@ -11,13 +11,14 @@ Django Trainings Project
 ## Pad (30 days valid)
 - https://yopad.eu/p/djangodev
 
-
-
 ## Docs
 - Tutorial: https://djangoheroes.spielprinzip.com
 - Django Docs: https://docs.djangoproject.com
 - Pip-tools: https://github.com/jazzband/pip-tools
 - Pip-tools: https://dida.do/de/blog/mehrschichtige-requirements-mit-pip-tools-verwalten
+
+## LDAP
+- https://django-auth-ldap.readthedocs.io/en/latest/reference.html
 
 ### gutes Einsteigertutorial
 - https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website
@@ -30,3 +31,9 @@ Django Trainings Project
 - https://realpython.com/primer-on-python-decorators/
 - https://realpython.com/command-line-interfaces-python-argparse/
 - https://docs.djangoproject.com/en/4.0/howto/static-files/deployment/
+
+### Tag 3
+- https://whitenoise.readthedocs.io/en/latest/
+- https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
+- https://modwsgi.readthedocs.io/en/master/
+- https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/modwsgi/
