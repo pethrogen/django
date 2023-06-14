@@ -11,6 +11,8 @@ Django Trainings Project
 ## Pad (30 days valid)
 https://yopad.eu/p/djangodev
 
+
+
 ## Docs
 Tutorial: https://djangoheroes.spielprinzip.com
 Django Docs: https://docs.djangoproject.com
