@@ -9,6 +9,11 @@
 {% endblock %}
 
 {% block content %}
+
+{% if user == event.author or user.is_superuser %}
+<a href="{% url 'events:event_update' event.pk %}">Event editieren</a>
+{% endif %}
+
 <p>
     <a href="{% url 'events:events' %}">zurück zur Übersicht</a>
 </p>

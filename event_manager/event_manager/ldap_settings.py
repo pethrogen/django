@@ -2,9 +2,10 @@
 Diese Settings müssen in die settings.py kopiert
 und entsprechend angepasst werden.
 
-Damit django_auth_ldap funktioniert, muss auch ldap selbst auf dem Client installiert werden.
+Damit django_auth_ldap funktioniert, muss auch ldap selbst auf dem Client installiert 
+werden.
 
-In diesem fiktiven Beispiel gibt es eine Organisation dc=example,dc=com und einen 
+In diesem fiktiven Beispiel gibt es eine Organisation dc=example,dc=com und einen
 admin User mit dem Password password123.
 
 Auf dem LDAP Server existieren die Gruppen 
@@ -13,7 +14,8 @@ active
 staff
 superuser
 
-die mit den Settings des Django-User-Models korrespondieren (is_active, is_staff, is_superuser)
+die mit den Settings des Django-User-Models korrespondieren 
+(is_active, is_staff, is_superuser)
 
 
 AUTH_LDAP_USER_FLAGS_BY_GROUP
@@ -27,14 +29,14 @@ zb.
 
 AUTH_LDAP_USER_ATTR_MAP
 --------------------------
-hier werden spezifische LDAP-Settings mit den korrenspondierenden Django-Settings gemappt,
-zb. firstname (Django) und givenName (LDAP)
+hier werden spezifische LDAP-Settings mit den korrenspondierenden Django-Settings 
+gemappt, zb. firstname (Django) und givenName (LDAP)
 
 
 AUTHENTICATION_BACKENDS
 --------------------------
-Django kann mit mehreren Authentication Backends arbeiten. Im Beispiel ist ModelBackend (default) und
-LDAP Auth Backend aktiv. Weitere Backends (zb. keycloak) wären denkbar.
+Django kann mit mehreren Authentication Backends arbeiten. Im Beispiel ist ModelBackend
+(default) und LDAP Auth Backend aktiv. Weitere Backends (zb. keycloak) wären denkbar.
 
 für weitere Settings siehe Referenz
 https://django-auth-ldap.readthedocs.io/en/latest/reference.html
@@ -67,6 +69,7 @@ AUTH_LDAP_MIRROR_GROUPS = True
 AUTH_LDAP_REQUIRE_GROUP = "cn=enabled+gidNumber=501,ou=groups,dc=example,dc=com"
 
 # um User zu blockieren, kann man sie der DENY Gruppe zurordnen.
+# Dazu muss die Gruppe disabled auf dem LDAP Server existieren
 # AUTH_LDAP_DENY_GROUP = "cn=disabled+gidNumber=504,ou=groups,dc=example,dc=com"
 
 AUTH_LDAP_USER_ATTR_MAP = {

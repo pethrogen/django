@@ -2,11 +2,22 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-neuen Event anlegen
+
+{% if object %}
+Event updaten
+{% else %}
+Event eintragen
+{% endif %}
+
 {% endblock %}
 
 {% block head %}
+{% if object %}
+<h1>Event {{object}} updaten</h1>
+{% else %}
 <h1>neuen Event anlegen</h1>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}

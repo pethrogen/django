@@ -10,10 +10,23 @@
 
 
 {% block content %}
+<p>
+    <a href="{% url 'events:event_create' %}">neuen Event anlegen</a>
+</p>
 
 <ul>
     {% for event in events %}
-    <li><a href="{% url 'events:event_detail' event.pk  %}">{{event}} [{{event.category.name}}]</a></li>
+    <li>
+        <a href="{% url 'events:event_detail' event.pk  %}">
+            {{event}} [{{event.category.name}}]
+        </a>
+
+        [<a href="{% url 'events:event_delete' event.pk  %}">
+            löschen
+        </a>]
+        ({{event.author}})
+
+    </li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -1,10 +1,22 @@
+from typing import Optional
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy, reverse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import Http404
 from django.http import HttpResponse
 from .models import Category, Event
 from .forms import CategoryForm, EventForm
+
+
+class UserIsOwner(UserPassesTestMixin):
+    def test_func(self) -> bool:
+        """prüfe, ob der aktuelle User der Eigentümer des Events ist.
+        Oder User ist Admin user"""
+        return (
+            self.get_object().author == self.request.user
+            or self.request.user.is_superuser
+        )
 
 
 class CategoryCreateView(CreateView):
@@ -13,10 +25,32 @@ class CategoryCreateView(CreateView):
     success_url = reverse_lazy("events:categories")
 
 
-class EventCreateView(CreateView):
+class EventCreateView(LoginRequiredMixin, CreateView):
     # event_form.html
     model = Event
     form_class = EventForm
+    # success_url = reverse_lazy("events:events")
+
+    def form_valid(self, form):
+        """Kurz vor dem Speichern Formulardaten nochmal ändern
+        und mit super() die Methode der Elternklasse aufrufen"""
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("events:event_detail", args=(self.object.pk,))
+
+
+class EventUpdateView(UserIsOwner, UpdateView):
+    # event_form.html
+    model = Event
+    form_class = EventForm
+    success_url = reverse_lazy("events:events")
+
+
+class EventDeleteView(UserIsOwner, DeleteView):
+    # generisches Formular ist event_confirm_delete.html
+    model = Event
     success_url = reverse_lazy("events:events")
 
 

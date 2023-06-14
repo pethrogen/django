@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator
+from .validators import date_in_past, BadWordFilter
 
 User = get_user_model()  # bezieht immer das aktuelle Usermodel
 
@@ -47,16 +50,30 @@ class Event(DateMixin):
         LARGE = 20, "sehr große Gruppe"
         UNLIMITED = 0, "ohne Begrenzung"
 
-    name = models.CharField(max_length=150)
-    sub_title = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(
+        max_length=150,
+        validators=[MinLengthValidator(3)],
+    )  # , unique=True
+    sub_title = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        validators=[BadWordFilter(["evil", "doofi"])],
+    )
     description = models.TextField(null=True, blank=True)
-    date = models.DateTimeField()
+    date = models.DateTimeField(validators=[date_in_past])
     min_group = models.PositiveIntegerField(choices=GroupSize.choices)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="events"
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="events")
     is_active = models.BooleanField(default=True)
+
+    def clean(self):
+        """Crossfield Validation"""
+        if self.name == self.sub_title:
+            raise ValidationError("name und sub_title dürfen nicht gleich sein!")
+        super().clean()
 
     def __str__(self) -> str:
         return self.name

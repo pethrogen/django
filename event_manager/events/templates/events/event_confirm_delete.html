@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Event löschen
+{% endblock %}
+
+{% block head %}
+<h1>Event {{object}} löschen</h1>
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        Willst du das Objekt {{object}} wirklich löschen?
+    </p>
+    <div>
+        <input type="submit" value="Objekt löschen" />
+    </div>
+</form>
+{% endblock %}
