@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+neuen Event anlegen
+{% endblock %}
+
+{% block head %}
+<h1>neuen Event anlegen</h1>
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    <div>
+        <input type="submit" value="Formular absenden" />
+    </div>
+</form>
+{% endblock %}

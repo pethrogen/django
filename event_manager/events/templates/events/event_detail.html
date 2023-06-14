@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{event.name}}
+{% endblock %}
+
+{% block head %}
+<h1>{{event.name}}</h1>
+{% endblock %}
+
+{% block content %}
+<p>
+    <a href="{% url 'events:events' %}">zurück zur Übersicht</a>
+</p>
+<p>{{event.name}}</p>
+<p>findet statt am {{event.date}}</p>
+{% endblock %}

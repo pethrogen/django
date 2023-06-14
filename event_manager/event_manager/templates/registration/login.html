@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="form-signin">
+    <form method="post">
+
+        <h1 class="h3 mb-3 fw-normal">Bitte einloggen</h1>
+
+        {% csrf_token %}
+        {{ form }}
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Erinnere Dich
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2019–2022</p>
+    </form>
+</main>
+{% endblock %}
