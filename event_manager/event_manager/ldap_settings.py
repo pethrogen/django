@@ -1,4 +1,8 @@
 """
+
+Django Auth Ldap
+https://django-auth-ldap.readthedocs.io/en/latest/
+
 Diese Settings müssen in die settings.py kopiert
 und entsprechend angepasst werden.
 
@@ -97,6 +101,6 @@ AUTH_LDAP_FIND_GROUP_PERMS = True
 # superuser.
 AUTHENTICATION_BACKENDS = (
     "django_auth_ldap.backend.LDAPBackend",
-    "django.contrib.auth.backends.ModelBackend",
+    "django.contrib.auth.backends.ModelBackend",  # <= Default standard
     # 'ldaptest.backend_ldap.CustomLDAPBackend',
 )

@@ -29,11 +29,16 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "whitenoise.runserver_nostatic",  # <= DAS HIER EINTRAGEN
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "events",
     "crispy_bootstrap5",
     "crispy_forms",
+    "rest_framework",
+    "rest_framework.authtoken",  # <= migration durchführen
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
+    "frontend",
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -173,7 +178,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / "static", 
+                    BASE_DIR / "frontend/templates/frontend/build/static"]
 
 # hier kommen gesammelt alle statischen Dateien des Projekts rein und werden
 # später im Produktivbetrieb von hier aus ausgeliefert
@@ -195,3 +201,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "/events/"
 LOGOUT_REDIRECT_URL = "/events/"
+
+
+# API
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Event Manager API",
+    "DESCRIPTION": "Django Event manager",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    # 'SERVE_AUTHENTICATION': ['rest_framework.authentication.SessionAuthentication'],
+    # 'SERVE_PERMISSIONS': ['rest_framework.permissions.IsAuthenticated'],
+    # OTHER SETTINGS
+}

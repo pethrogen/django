@@ -52,3 +52,6 @@ https://ratings.gfu.cloud/form.html?h=6e91813a997ccb52f04f1d53dcd32bc79326861c8d
 - https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/modwsgi/
 
 ### Tag 4
+- https://swagger.io/specification/
+- https://drf-spectacular.readthedocs.io/en/latest/
+- https://djangoheroes.spielprinzip.com/webapi/restful_api.html
