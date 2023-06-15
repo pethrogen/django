@@ -18,6 +18,24 @@ https://ratings.gfu.cloud/form.html?h=6e91813a997ccb52f04f1d53dcd32bc79326861c8d
 - https://yopad.eu/p/djangodev
 - https://yopad.eu/p/reactschulung
 
+## Cors Header
+Frontend auf anderem Server wie Backend
+### cors installieren
+
+    pip install django-cors-headers
+
+in settings eintragen (vor common mittleware)
+
+    "corsheaders.middleware.CorsMiddleware",  # wichtig, vor common
+
+    INSTALLED_APPS = [
+        ...
+        "frontend",
+        "corsheaders",
+    ]
+
+    CORS_ALLOWED_ORIGINS = ["example.com"]
+
 ## Docs
 - Tutorial: https://djangoheroes.spielprinzip.com
 - Django Docs: https://docs.djangoproject.com
