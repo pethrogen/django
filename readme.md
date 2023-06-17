@@ -12,8 +12,6 @@ und mit entsprechenden Daten füllen.
     (eventenv) pip-sync requirements.txt requirements-dev.txt
     (eventenv) python manage.py runserver
 
-https://ratings.gfu.cloud/form.html?h=6e91813a997ccb52f04f1d53dcd32bc79326861c8d74469b25c2461ed0ee8144&type=trainer
-
 ## Pad (30 days valid)
 - https://yopad.eu/p/djangodev
 - https://yopad.eu/p/reactschulung
